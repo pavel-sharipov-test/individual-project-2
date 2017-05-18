@@ -1,4 +1,4 @@
-package model;
+package com.sharipov.individual.model;
 
 /**
  * @author Pavel Sharipov
@@ -36,4 +36,4 @@ public enum BookType {
     BIOGRAPHIES,
     AUTOBIOGRAPHIES,
     FANTASY,
-    }
+}

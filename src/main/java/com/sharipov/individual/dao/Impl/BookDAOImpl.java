@@ -1,7 +1,7 @@
-package dao.Impl;
+package com.sharipov.individual.dao.Impl;
 
-import dao.BookDAO;
-import model.Book;
+import com.sharipov.individual.dao.BookDAO;
+import com.sharipov.individual.model.Book;
 import org.springframework.stereotype.Repository;
 
 /**

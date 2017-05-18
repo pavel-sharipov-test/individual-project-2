@@ -1,4 +1,4 @@
-package model;
+package com.sharipov.individual.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import java.util.List;
  * @author Pavel Sharipov
  */
 @Entity
-public class Publisher extends BaseEntity {
+public class Person extends BaseEntity {
 
     private int bookCount;
 
@@ -34,7 +34,7 @@ public class Publisher extends BaseEntity {
         this.name = name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "publisher")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "author")
     public List<Book> getBooks() {
         return books;
     }

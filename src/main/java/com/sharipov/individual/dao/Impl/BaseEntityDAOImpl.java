@@ -1,7 +1,7 @@
-package dao.Impl;
+package com.sharipov.individual.dao.Impl;
 
-import dao.BaseEntityDAO;
-import model.BaseEntity;
+import com.sharipov.individual.dao.BaseEntityDAO;
+import com.sharipov.individual.model.BaseEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * Time: 11:47
  */
 @Transactional
-public abstract class BaseEntityDAOImpl<T extends BaseEntity> implements BaseEntityDAO<T>{
+public abstract class BaseEntityDAOImpl<T extends BaseEntity> implements BaseEntityDAO<T> {
     private Class<T> type;
 
     public BaseEntityDAOImpl(Class<T> type) {

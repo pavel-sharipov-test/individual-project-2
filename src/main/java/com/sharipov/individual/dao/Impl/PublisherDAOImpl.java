@@ -1,7 +1,8 @@
-package dao.Impl;
+package com.sharipov.individual.dao.Impl;
 
-import dao.PublisherDAO;
-import model.Publisher;
+import com.sharipov.individual.dao.PublisherDAO;
+import com.sharipov.individual.model.Publisher;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created with IntelliJ IDEA
@@ -9,6 +10,7 @@ import model.Publisher;
  * Date: 18.05.2017
  * Time: 13:19
  */
+@Repository
 public class PublisherDAOImpl extends BaseEntityDAOImpl<Publisher> implements PublisherDAO {
     public PublisherDAOImpl() {
         super(Publisher.class);

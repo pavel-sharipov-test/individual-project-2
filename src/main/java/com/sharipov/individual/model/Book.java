@@ -1,4 +1,4 @@
-package model;
+package com.sharipov.individual.model;
 
 import javax.persistence.*;
 

@@ -1,6 +1,6 @@
-package dao;
+package com.sharipov.individual.dao;
 
-import model.Person;
+import com.sharipov.individual.model.Person;
 
 /**
  * Created with IntelliJ IDEA
