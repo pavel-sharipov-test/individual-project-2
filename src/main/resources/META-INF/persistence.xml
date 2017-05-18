@@ -8,7 +8,7 @@
         <properties>
 
             <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
-<!--            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
             <property name="hibernate.connection.url" value="jdbc:oracle:thin:@oracle-students.exigengroup.com:1521:student" />
             <property name="hibernate.connection.username" value="PAVELS" />
             <property name="hibernate.connection.password" value="a" />
@@ -16,7 +16,7 @@
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.flushMode" value="FLUSH_AUTO" />
             <property name="hibernate.hbm2ddl.auto" value="validate" />
-            <property name="hibernate.archive.autodetection" value="class" />-->
+            <property name="hibernate.archive.autodetection" value="class" />
         </properties>
     </persistence-unit>
 </persistence>
