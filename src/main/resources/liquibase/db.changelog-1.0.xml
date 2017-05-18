@@ -5,67 +5,50 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
     <changeSet author="PAVELS" id="changelog-1.0">
+
+    <createTable tableName="Person">
+        <column name="id" type="bigint" autoIncrement="true" >
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="bookCount" type="bigint">
+            <constraints nullable="false"/>
+        </column>
+        <column name="name" type="varchar(100)">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    <createTable tableName="Publisher">
+        <column name="id" type="bigint" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="name" type="varchar(100)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="bookCount" type="bigint">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
         <createTable tableName="Book">
-            <column name="id" type="long" autoIncrement="true">
-                <constraints nullable="true" primaryKey="true"/>
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="name" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="authorId" type="long">
+            <column name="authorId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fkAuthor" references="Person(id)"
+                             deleteCascade="true"/>
+            </column>
+            <column name="publisherId" type="bigint">
+                <constraints nullable="false" foreignKeyName="fkPublisher" references="Publisher(id)"
+                             deleteCascade="true"/>
+            </column>
+            <column name="year" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="publisherId" type="long">
-                <constraints nullable="false"/>
-            </column>
-            <column name="year" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="pages" type="int">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-        <createTable tableName="Person">
-            <column name="id" autoIncrement="true" type="long">
-                <constraints nullable="false"/>
-            </column>
-            <column name="bookCount" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="name" type="varchar(100)">
+            <column name="pages" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="Publisher">
-            <column name="id" autoIncrement="true" type="long">
-                <constraints nullable="false"/>
-            </column>
-            <column name="name" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="bookCount" type="int">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-        <addForeignKeyConstraint baseColumnNames="publisherId"
-                                 baseTableName="Book"
-                                 constraintName="fkBookPublisher"
-                                 deferrable="true"
-                                 initiallyDeferred="true"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="Publisher"/>
-        <addForeignKeyConstraint baseColumnNames="authorId"
-                                 baseTableName="Book"
-                                 constraintName="fkBookAuthor"
-                                 deferrable="true"
-                                 initiallyDeferred="true"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="Person"/>
-
-
     </changeSet>
 </databaseChangeLog>

@@ -5,6 +5,7 @@ import javax.persistence.*;
 /**
  * @author Pavel Sharipov
  */
+@Entity
 public class Book extends BaseEntity {
 
     private String name;
