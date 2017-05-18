@@ -11,9 +11,11 @@ public class Book extends BaseEntity {
 
     private String name;
 
+    //@Column(name = "authorid")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Person author;
 
+    //@Column(name = "publisherid")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Publisher publisher;
 

@@ -56,4 +56,7 @@
             <column name="type" type="varchar(20)"></column>
         </addColumn>
     </changeSet>
+    <changeSet id="changelog-3.0" author="PAVELS">
+        <renameColumn tableName="Book" oldColumnName="type" newColumnName="bookType"/>
+    </changeSet>
 </databaseChangeLog>

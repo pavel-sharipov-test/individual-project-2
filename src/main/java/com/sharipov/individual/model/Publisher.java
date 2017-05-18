@@ -1,9 +1,6 @@
 package com.sharipov.individual.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -16,6 +13,8 @@ public class Publisher extends BaseEntity {
 
     private String name;
 
+    //@CollectionTable(name = "Book", joinColumns = @JoinColumn(name = "id"))
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "publisher")
     private List<Book> books;
 
     public int getBookCount() {
@@ -34,7 +33,7 @@ public class Publisher extends BaseEntity {
         this.name = name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "publisher")
+
     public List<Book> getBooks() {
         return books;
     }
