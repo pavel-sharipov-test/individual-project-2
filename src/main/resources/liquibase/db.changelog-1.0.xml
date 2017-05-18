@@ -51,4 +51,9 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="changelog-2.0" author="PAVELS">
+        <addColumn tableName="Book">
+            <column name="type" type="varchar(20)"></column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
