@@ -2,8 +2,12 @@ package com.sharipov.individual.dao.Impl;
 
 import com.sharipov.individual.dao.BaseEntityDAO;
 import com.sharipov.individual.model.BaseEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
@@ -14,7 +18,12 @@ import java.util.List;
  */
 @Transactional
 public abstract class BaseEntityDAOImpl<T extends BaseEntity> implements BaseEntityDAO<T> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BaseEntityDAOImpl.class);
     private Class<T> type;
+
+    @PersistenceContext
+    protected EntityManager entityManager;
 
     public BaseEntityDAOImpl(Class<T> type) {
         this.type = type;
