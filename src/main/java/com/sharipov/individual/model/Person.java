@@ -1,6 +1,7 @@
 package com.sharipov.individual.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,5 +41,15 @@ public class Person extends BaseEntity {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+
+    //For test reasons only
+    public void addBook(Book book) {
+        if (books == null) {
+            books = new ArrayList<>();
+        }
+        books.add(book);
+        book.setAuthor(this);
     }
 }

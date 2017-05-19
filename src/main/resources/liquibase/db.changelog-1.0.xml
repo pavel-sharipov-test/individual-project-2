@@ -59,4 +59,7 @@
     <changeSet id="changelog-3.0" author="PAVELS">
         <renameColumn tableName="Book" oldColumnName="type" newColumnName="bookType"/>
     </changeSet>
+    <changeSet id="changelog-4.0" author="PAVELS">
+        <addNotNullConstraint tableName="Book" columnName="bookType"/>
+    </changeSet>
 </databaseChangeLog>

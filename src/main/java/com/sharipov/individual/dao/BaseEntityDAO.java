@@ -12,9 +12,7 @@ import java.util.List;
  *         Time: 11:32
  */
 public interface BaseEntityDAO<T extends BaseEntity> {
-    void add(T object);
-
-    void update(T object);
+    void save(T object);
 
     T find(long id);
 
