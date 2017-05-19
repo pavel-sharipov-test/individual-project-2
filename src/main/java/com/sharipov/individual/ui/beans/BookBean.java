@@ -21,5 +21,9 @@ public class BookBean {
     @Autowired
     private BookDAO bookDAO;
 
+    public String getBookName() {
+        return bookDAO.find(1).getName();
+    }
+
 
 }
