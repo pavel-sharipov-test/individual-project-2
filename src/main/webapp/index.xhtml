@@ -4,9 +4,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-    <h:inputText value="#{book.bookName}"/>
-</f:view>
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+    <p:dataTable var="book" value="#{bookBean.books}">
+        <p:column headerText="Id">
+            <h:outputText value="#{book.id}" />
+        </p:column>
+
+        <p:column headerText="Name">
+            <h:outputText value="#{book.name}" />
+        </p:column>
+
+        <p:column headerText="Author">
+            <h:outputText value="#{book.author.name}" />
+        </p:column>
+
+        <p:column headerText="Publisher">
+            <h:outputText value="#{book.publisher.name}" />
+        </p:column>
+        <p:column headerText="Type">
+            <h:outputText value="#{book.bookType}" />
+        </p:column>
+
+        <p:column headerText="Year">
+            <h:outputText value="#{book.year}" />
+        </p:column>
+
+        <p:column headerText="Pages">
+            <h:outputText value="#{book.pages}" />
+        </p:column>
+
+    </p:dataTable>
+</h:body>
+
+
 </html>
