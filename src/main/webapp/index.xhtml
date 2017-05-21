@@ -8,46 +8,123 @@
 <h:head>
 
 </h:head>
+<h:body>
     <f:view>
         <h:form id="bookForm">
             <p:dataTable id="bookTable" var="book" value="#{bookBean.books}">
                 <p:column headerText="Id">
-                    <h:outputText value="#{book.id}" />
+                    <h:outputText value="#{book.id}"/>
                 </p:column>
 
                 <p:column headerText="Name">
-                    <h:outputText value="#{book.name}" />
+                    <h:outputText value="#{book.name}"/>
                 </p:column>
 
                 <p:column headerText="Author">
-                    <h:outputText value="#{book.author.name}" />
+                    <h:outputText value="#{book.author.name}"/>
                 </p:column>
 
                 <p:column headerText="Publisher">
-                    <h:outputText value="#{book.publisher.name}" />
+                    <h:outputText value="#{book.publisher.name}"/>
                 </p:column>
                 <p:column headerText="Type">
-                    <h:outputText value="#{book.bookType}" />
+                    <h:outputText value="#{book.bookType}"/>
                 </p:column>
 
                 <p:column headerText="Year">
-                    <h:outputText value="#{book.year}" />
+                    <h:outputText value="#{book.year}"/>
                 </p:column>
 
                 <p:column headerText="Pages">
-                    <h:outputText value="#{book.pages}" />
+                    <h:outputText value="#{book.pages}"/>
                 </p:column>
 
                 <p:column>
-                    <p:commandButton icon="ui-icon-trash" value="Delete" title="Delete" actionListener="#{bookBean.deleteBook(book)}"
+                    <p:commandButton icon="ui-icon-trash" value="Delete" title="Delete"
+                                     actionListener="#{bookBean.deleteBook(book)}"
                                      update="bookForm"/>
                 </p:column>
             </p:dataTable>
 
         </h:form>
+        <br/>
+        <h2>Enter Book</h2>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><h:inputText size="10" value="#{bookBean.book.name}"/></td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td><h:inputText size="20" value="#{bookBean.book.author}"/></td>
+            </tr>
+            <tr>
+                <td>Publisher</td>
+                <td><h:inputText size="5" value="#{bookBean.book.publisher}"/></td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td><h:inputText size="10" value="#{bookBean.book.bookType}"/></td>
+            </tr>
+            <tr>
+                <td>Year</td>
+                <td><h:inputText size="10" value="#{bookBean.book.year}"/></td>
+            </tr>
+            <tr>
+                <td>Page</td>
+                <td><h:inputText size="10" value="#{bookBean.book.pages}"/></td>
+            </tr>
+
+
+
+
+
+
+        </table>
+
+        <h:commandButton value="Add" action="#{order.addAction}"/>
+
+        <p:commandButton value="Add Book" action="#{bookBean.createBook()}"/>
+        <br/>
+        <h:form id="personForm">
+            <p:dataTable id="personTable" var="person" value="#{personBean.persons}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{person.id}"/>
+                </p:column>
+
+                <p:column headerText="Name">
+                    <h:outputText value="#{person.name}"/>
+                </p:column>
+
+                <p:column headerClass="Book quantity">
+                    <h:outputText value="#{person.bookCount}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <br/>
+        <h:form id="publisherForm">
+            <p:dataTable id="publisherTable" var="publisher" value="#{publisherBean.publishers}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{publisher.id}"/>
+                </p:column>
+
+                <p:column headerText="Name">
+                    <h:outputText value="#{publisher.name}"/>
+                </p:column>
+
+                <p:column headerClass="Book quantity">
+                    <h:outputText value="#{publisher.bookCount}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+        <h:form>
+            <p:commandButton value="Persons" action="persons.xhtml?faces-redirect=true"/>
+
+
+        </h:form>
     </f:view>
-
-
+</h:body>
 
 
 </html>
