@@ -61,6 +61,7 @@ public abstract class BaseEntityDAOImpl<T extends BaseEntity> implements BaseEnt
 
     @Override
     public void delete(T object) {
-        entityManager.remove(object);
+        T result = entityManager.merge(object);
+        entityManager.remove(result);
     }
 }

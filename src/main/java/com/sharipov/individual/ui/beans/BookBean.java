@@ -43,6 +43,17 @@ public class BookBean {
         return books;
     }
 
+    public void deleteBook(Book book) {
+        bookDAO.delete(book);
+        init();
 
 
+    }
+
+/*    public String deleteBook(Book book) {
+        bookDAO.delete(book);
+        books = bookDAO.findAll();
+        return null;
+
+    }*/
 }

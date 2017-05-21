@@ -39,7 +39,7 @@ public class TestClass {
         TestClass testClass = new TestClass();
         PublisherDAO publisherDAO = context.getBean(PublisherDAO.class);
         PersonDAO personDAO = context.getBean(PersonDAO.class);
-
+        BookDAO bookDAO = context.getBean(BookDAO.class);
 
         Publisher publisher1 = new Publisher();
         publisher1.setName("First test publisher");
@@ -75,6 +75,7 @@ public class TestClass {
         personDAO.save(person2);
         publisherDAO.save(publisher1);
         publisherDAO.save(publisher2);
+
 
 
 
