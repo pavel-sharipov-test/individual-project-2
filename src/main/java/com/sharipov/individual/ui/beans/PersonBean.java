@@ -35,4 +35,8 @@ public class PersonBean {
         personDAO.delete(person);
         init();
     }
+
+    public Person getPersonbyId(Long id) {
+        return persons.stream().filter(person -> person.getId().equals(id)).findFirst().get();
+    }
 }

@@ -35,4 +35,15 @@ public class PublisherBean {
         init();
     }
 
+    public Publisher findPublisherById(Long id) {
+        return publisherDAO.find(id);
+    }
+
+    public Publisher getPublisherbyId(Long id) {
+        init();
+        return publishers.stream().filter(publisher -> publisher.getId().equals(id)).findFirst().get();
+    }
+
+
+
 }
