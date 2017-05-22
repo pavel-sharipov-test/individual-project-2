@@ -75,4 +75,32 @@ public class Book extends BaseEntity {
     public void setPages(int pages) {
         this.pages = pages;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Book book = (Book) o;
+
+        if (year != book.year) return false;
+        if (pages != book.pages) return false;
+        if (!name.equals(book.name)) return false;
+        if (!author.equals(book.author)) return false;
+        if (!publisher.equals(book.publisher)) return false;
+        return bookType == book.bookType;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + author.hashCode();
+        result = 31 * result + publisher.hashCode();
+        result = 31 * result + bookType.hashCode();
+        result = 31 * result + year;
+        result = 31 * result + pages;
+        return result;
+    }
 }

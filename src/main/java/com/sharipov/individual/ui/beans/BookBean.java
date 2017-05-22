@@ -3,6 +3,7 @@ package com.sharipov.individual.ui.beans;
 
 import com.sharipov.individual.dao.BookDAO;
 import com.sharipov.individual.model.Book;
+import com.sharipov.individual.service.BookService;
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,55 +26,32 @@ import java.util.Map;
 public class BookBean {
 
     @Autowired
-    private BookDAO bookDAO;
+    private BookService bookService;
 
-    private Book book;
+    private Book book = new Book();
+    private List<Book> books;
+
+    @PostConstruct
+    private void init() {
+        books = bookService.findAllBooks();
+    }
 
     public Book getBook() {
         return book;
     }
 
-    public void createBook() {
-        getBook().setName(getBook().getName().trim());
-        bookDAO.save(book);
+    public void doCreateBook() {
+
+        bookService.createBook(book);
     }
-
-    public String getBookName() {
-        return bookDAO.find(1).getName();
-    }
-
-    @PostConstruct
-    private void init() {
-        books = bookDAO.findAll();
-    }
-
-    private List<Book> books;
-
- /*   public void deleteBook(Book book) {
-        bookDAO.delete(book);
-    }*/
 
     public List<Book> getBooks() {
         return books;
     }
 
     public void deleteBook(Book book) {
-        bookDAO.delete(book);
+        bookService.deleteBook(book);
         init();
-
-
     }
 
-    public void viewPersons() {
-        Map<String,Object> options = new HashMap<>();
-        options.put("resizable", false);
-        RequestContext.getCurrentInstance().openDialog("persons", options, null);
-    }
-
-/*    public String deleteBook(Book book) {
-        bookDAO.delete(book);
-        books = bookDAO.findAll();
-        return null;
-
-    }*/
 }
