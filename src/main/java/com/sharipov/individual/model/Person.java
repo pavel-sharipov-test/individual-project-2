@@ -10,21 +10,11 @@ import java.util.List;
 @Entity
 public class Person extends BaseEntity {
 
-    private int bookCount;
-
     private String name;
 
     //@CollectionTable(name = "Book", joinColumns = @JoinColumn(name = "id"))
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "author")
     private List<Book> books;
-
-    public int getBookCount() {
-        return bookCount;
-    }
-
-    public void setBookCount(int bookCount) {
-        this.bookCount = bookCount;
-    }
 
     public String getName() {
         return name;

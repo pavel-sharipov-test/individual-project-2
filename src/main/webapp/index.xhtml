@@ -42,7 +42,18 @@
                     <p:commandButton icon="ui-icon-trash" value="Delete" title="Delete" actionListener="#{bookBean.deleteBook(book)}"
                                      update="bookForm"/>
                 </p:column>
+                <p:column>
+                    <p:commandButton value="Edit" title="Edit" update="bookForm" actionListener="#{bookEditBean.updateBook(book)}"/>
+                </p:column>
             </p:dataTable>
+
+            <div style="margin-top: 1%">
+                <p:button value="Add Book" outcome="add_edit_book.xhtml"/>
+                <p:button value="Add Author" outcome="add_edit_author.xhtml"/>
+                <p:button value="Add Publisher" outcome="add_edit_publisher.xhtml"/>
+
+            </div>
+
 
         </h:form>
     </f:view>
