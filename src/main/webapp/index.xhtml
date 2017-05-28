@@ -8,108 +8,57 @@
 <h:head>
 
 </h:head>
-<h:body>
     <f:view>
-        <h1>Create a new book</h1>
-        <h:form id="bookForm2">
+        <h:form id="bookForm">
+            <p:dataTable id="bookTable" var="book" value="#{bookBean.books}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{book.id}" />
+                </p:column>
 
-            <h:panelGrid columns="2">
-                <h:outputLabel value="Name : "/>
-                <h:inputText value="#{bookBean.book.name}"/>
+                <p:column headerText="Name">
+                    <h:outputText value="#{book.name}" />
+                </p:column>
 
-                <!-- <h:outputLabel value="Author : "/>
-                 <h:inputText value="#{bookBean.book.author}" converter="authorConverter"/>-->
+                <p:column headerText="Author">
+                    <h:outputText value="#{book.author.name}" />
+                </p:column>
 
-                <!-- <h:outputLabel value="Publisher : "/>
-                 <h:inputText value="#{bookBean.book.publisher}" converter="publisherConverter"/>
-                -->
-                <h:outputLabel value="Author : "/>
-                <h:selectOneMenu value="#{bookBean.book.author}" converter="authorConverter" id="select1">
-                    <f:selectItems value="#{personBean.persons}" var="person"
-                                   itemValue="#{person}" itemLabel="#{person.name}"/>
-                </h:selectOneMenu>
+                <p:column headerText="Publisher">
+                    <h:outputText value="#{book.publisher.name}" />
+                </p:column>
+                <p:column headerText="Type">
+                    <h:outputText value="#{book.bookType}" />
+                </p:column>
 
+                <p:column headerText="Year">
+                    <h:outputText value="#{book.year}" />
+                </p:column>
 
-                <h:outputLabel value="Publisher : "/>
-                <h:selectOneMenu value="#{bookBean.book.publisher}" converter="publisherConverter" id="select2">
-                    <f:selectItems value="#{publisherBean.publishers}" var="publisher"
-                                   itemValue="#{publisher}" itemLabel="#{publisher.name}"/>
-                </h:selectOneMenu>
+                <p:column headerText="Pages">
+                    <h:outputText value="#{book.pages}" />
+                </p:column>
 
-                <h:outputLabel value="Type : "/>
-                <h:inputText value="#{bookBean.book.bookType}"/>
+                <p:column>
+                    <p:commandButton icon="ui-icon-trash" value="Delete" title="Delete" actionListener="#{bookBean.deleteBook(book)}"
+                                     update="bookForm"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Edit" title="Edit" update="bookForm" actionListener="#{bookEditBean.updateBook(book)}"/>
+                </p:column>
+            </p:dataTable>
 
-                <h:outputLabel value="Year : "/>
-                <h:inputText value="#{bookBean.book.year}"/>
+            <div style="margin-top: 1%">
+                <p:button value="Add Book" outcome="add_edit_book.xhtml"/>
+                <p:button value="Add Author" outcome="add_edit_author.xhtml"/>
+                <p:button value="Add Publisher" outcome="add_edit_publisher.xhtml"/>
 
-                <h:outputLabel value="Pages : "/>
-                <h:inputText value="#{bookBean.book.pages}"/>
+            </div>
 
-            </h:panelGrid>
-
-            <h:commandButton value="Create a book" action="#{bookBean.doCreateBook}">
-                <f:ajax execute="@form" render=":booklist :errors"/>
-            </h:commandButton>
 
         </h:form>
-
-        <br/>
-
-        <hr/>
-        <h1>List of books</h1>
-
-        <h:dataTable id="booklist" value="#{bookBean.getBooks()}" var="bk" border="1">
-
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Name"/>
-                </f:facet>
-                <h:link outcome="viewBook.xhtml?id=#{bk.id}" value="#{bk.name}"/>
-            </h:column>
-
-        </h:dataTable>
-
-
-        <!-- <br/>
-         <h:form id="personForm">
-             <p:dataTable id="personTable" var="person" value="#{personBean.persons}">
-                 <p:column headerText="Id">
-                     <h:outputText value="#{person.id}"/>
-                 </p:column>
-
-                 <p:column headerText="Name">
-                     <h:outputText value="#{person.name}"/>
-                 </p:column>
-
-                 <p:column headerClass="Book quantity">
-                     <h:outputText value="#{person.bookCount}"/>
-                 </p:column>
-             </p:dataTable>
-         </h:form>
-         <br/>
-         <h:form id="publisherForm">
-             <p:dataTable id="publisherTable" var="publisher" value="#{publisherBean.publishers}">
-                 <p:column headerText="Id">
-                     <h:outputText value="#{publisher.id}"/>
-                 </p:column>
-
-                 <p:column headerText="Name">
-                     <h:outputText value="#{publisher.name}"/>
-                 </p:column>
-
-                 <p:column headerClass="Book quantity">
-                     <h:outputText value="#{publisher.bookCount}"/>
-                 </p:column>
-             </p:dataTable>
-         </h:form>
-
-         <h:form>
-             <p:commandButton value="Persons" action="persons.xhtml?faces-redirect=true"/>
-
-
-         </h:form>-->
     </f:view>
-</h:body>
+
+
 
 
 </html>

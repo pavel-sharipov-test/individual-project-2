@@ -62,4 +62,8 @@
     <changeSet id="changelog-4.0" author="PAVELS">
         <addNotNullConstraint tableName="Book" columnName="bookType"/>
     </changeSet>
+<!--    <changeSet id="changeLog-5.0" author="PAVELS">
+        <dropColumn tableName="Person" columnName="bookCount"/>
+        <dropColumn tableName="Publisher" columnName="bookCount"/>
+    </changeSet>-->
 </databaseChangeLog>
