@@ -50,7 +50,7 @@ public class Publisher extends BaseEntity {
 
         Publisher publisher = (Publisher) o;
 
-        if (bookCount != publisher.bookCount) return false;
+
         if (!name.equals(publisher.name)) return false;
         return books.equals(publisher.books);
     }
@@ -58,7 +58,7 @@ public class Publisher extends BaseEntity {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + bookCount;
+
         result = 31 * result + name.hashCode();
         result = 31 * result + books.hashCode();
         return result;

@@ -51,7 +51,7 @@ public class Person extends BaseEntity {
 
         Person person = (Person) o;
 
-        if (bookCount != person.bookCount) return false;
+
         if (!name.equals(person.name)) return false;
         return books.equals(person.books);
     }
@@ -59,7 +59,7 @@ public class Person extends BaseEntity {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + bookCount;
+
         result = 31 * result + name.hashCode();
         result = 31 * result + books.hashCode();
         return result;
