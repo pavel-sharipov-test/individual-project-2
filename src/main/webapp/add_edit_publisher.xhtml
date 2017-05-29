@@ -4,8 +4,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+
+<h:body>
+    <f:view>
+        <h:form id="publisherForm">
+            <h2>Publishers</h2>
+            <p:dataTable id="publisherTable" var="publisher" value="#{publisherEditBean.publishers}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{publisher.id}"/>
+                </p:column>
+                <p:column headerText="Name">
+                    <h:outputText value="#{publisher.name}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+        <h:form id="addPublisherForm">
+            <h2>Add publisher</h2>
+            <p:panelGrid columns="2">
+                <p:column>
+                    <p:outputLabel for="name" value="Name"/>
+                    <p:inputText id="name" value="#{publisherEditBean.publisher.name}"/>
+                </p:column>
+            </p:panelGrid>
+            <p:commandButton value="Save" id="saveButton" icon="ui-icon-check" update="publisherForm"
+                             ajax="true" action="#{publisherEditBean.savePublisher}"/>
+            <p:commandButton id="cancelButton" value="Cancel" immediate="true"
+                             actionListener="#{bookBean.init}" action="index"/>
+
+        </h:form>
+    </f:view>
+
+</h:body>
+
+
 </html>

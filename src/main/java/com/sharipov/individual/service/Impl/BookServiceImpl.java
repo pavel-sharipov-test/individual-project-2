@@ -1,7 +1,8 @@
-package com.sharipov.individual.service;
+package com.sharipov.individual.service.Impl;
 
 import com.sharipov.individual.dao.BookDAO;
 import com.sharipov.individual.model.Book;
+import com.sharipov.individual.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * Date: 22.05.2017
  * Time: 13:26
  */
+
 @Service
 public class BookServiceImpl implements BookService {
 

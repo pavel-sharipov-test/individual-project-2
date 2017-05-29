@@ -4,10 +4,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+    <f:view>
+        <h:form id="bookForm">
+            <p:panelGrid columns="2" >
+
+                    <p:outputLabel for="name" value="Name"/>
+                    <p:inputText id="name" value="#{bookEditBean.book.name}" required="true"/>
 
 
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+                    <p:outputLabel for="pages" value="Pages"/>
+                    <p:inputText id="pages" value="#{bookEditBean.book.pages}" required="true"/>
+
+                    <p:outputLabel for="years" value="Years"/>
+                    <p:inputText id="years" value="#{bookEditBean.book.year}" required="true"/>
+
+                    <p:outputLabel for="publishers" value="Publishers"/>
+                    <p:selectOneMenu id="publishers" value="#{bookEditBean.book.publisher}" filter="true"
+                                        filterMatchMode="startsWith" converter="publisherConverter">
+                        <f:selectItems value="#{bookEditBean.publishersList}" var="publisher"
+                                       itemValue="#{publisher}" itemLabel="#{publisher.name}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="persons" value="Persons"/>
+                    <p:selectOneMenu id="persons" value="#{bookEditBean.book.author}" filter="true"
+                                        filterMatchMode="startsWith" converter="authorConverter">
+                        <f:selectItems value="#{bookEditBean.personList}" var="person"
+                                       itemValue="#{person}" itemLabel="#{person.name}"/>
+                    </p:selectOneMenu>
+
+
+            </p:panelGrid>
+
+
+            <p:commandButton value="Save" id="saveButton" icon="ui-icon-check" update="bookForm"
+                             ajax="true" action="#{bookEditBean.saveBook}"/>
+            <p:commandButton id="cancelButton" value="Cancel" immediate="true"
+                             actionListener="#{bookBean.init}" action="index"/>
+
+        </h:form>
+    </f:view>
+
+</h:body>
+
+
 </html>

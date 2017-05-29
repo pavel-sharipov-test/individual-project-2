@@ -8,10 +8,12 @@ import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +26,8 @@ import java.util.Map;
  */
 
 @Named("bookBean")
-@ViewScoped
-public class BookBean {
+@SessionScoped
+public class BookBean implements Serializable {
 
     @Autowired
     private BookService bookService;
@@ -34,7 +36,7 @@ public class BookBean {
     private List<Book> books;
 
     @PostConstruct
-    private void init() {
+    public void init() {
         books = bookService.findAllBooks();
     }
 

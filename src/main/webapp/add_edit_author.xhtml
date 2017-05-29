@@ -4,22 +4,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://java.sun.com/jsf/html">
-<head>
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
 
-</head>
+</h:head>
 <h:body>
-    <h:form>
-        <h2>Add author</h2>
+    <f:view>
+        <h:form id="personForm">
+            <h2>Authors</h2>
+            <p:dataTable id="personTable" var="person" value="#{personEditBean.persons}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{person.id}"/>
+                </p:column>
+                <p:column headerText="Name">
+                    <h:outputText value="#{person.name}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+        <h:form id="addPersonForm">
+            <h2>Add author</h2>
             <p:panelGrid columns="2">
                 <p:column>
                     <p:outputLabel for="name" value="Name"/>
-                    <p:inputText id="name" value="#{personBean.person.name}"/>
+                    <p:inputText id="name" value="#{personEditBean.person.name}"/>
                 </p:column>
-
             </p:panelGrid>
+            <p:commandButton value="Save" id="saveButton" icon="ui-icon-check" update="personForm"
+                             ajax="true" action="#{personEditBean.savePerson}"/>
+            <p:commandButton id="cancelButton" value="Cancel" immediate="true"
+                             actionListener="#{bookBean.init}" action="index"/>
 
+        </h:form>
+    </f:view>
 
-    </h:form>
 </h:body>
 </html>

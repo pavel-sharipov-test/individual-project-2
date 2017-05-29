@@ -11,7 +11,7 @@
     <f:view>
         <h:form id="bookForm">
             <p:dataTable id="bookTable" var="book" value="#{bookBean.books}">
-                <p:column headerText="Id">
+                <p:column headerText="Id" width="50">
                     <h:outputText value="#{book.id}" />
                 </p:column>
 
@@ -30,27 +30,27 @@
                     <h:outputText value="#{book.bookType}" />
                 </p:column>
 
-                <p:column headerText="Year">
+                <p:column headerText="Year" width="30">
                     <h:outputText value="#{book.year}" />
                 </p:column>
 
-                <p:column headerText="Pages">
+                <p:column headerText="Pages" width="30">
                     <h:outputText value="#{book.pages}" />
                 </p:column>
 
                 <p:column>
                     <p:commandButton icon="ui-icon-trash" value="Delete" title="Delete" actionListener="#{bookBean.deleteBook(book)}"
                                      update="bookForm"/>
-                </p:column>
-                <p:column>
                     <p:commandButton value="Edit" title="Edit" update="bookForm" actionListener="#{bookEditBean.updateBook(book)}"/>
+
                 </p:column>
+
             </p:dataTable>
 
             <div style="margin-top: 1%">
-                <p:button value="Add Book" outcome="add_edit_book.xhtml"/>
-                <p:button value="Add Author" outcome="add_edit_author.xhtml"/>
-                <p:button value="Add Publisher" outcome="add_edit_publisher.xhtml"/>
+                <p:commandButton value="Add Book"  action="add_edit_book.xhtml"/>
+                <p:commandButton value="Add Author" actionListener="#{personEditBean.init}" action="add_edit_author.xhtml"/>
+                <p:commandButton value="Add Publisher" actionListener="#{publisherEditBean.init}" action="add_edit_publisher.xhtml"/>
 
             </div>
 

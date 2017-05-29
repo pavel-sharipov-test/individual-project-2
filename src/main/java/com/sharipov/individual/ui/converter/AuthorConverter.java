@@ -2,7 +2,9 @@ package com.sharipov.individual.ui.converter;
 
 import com.sharipov.individual.model.Person;
 import com.sharipov.individual.model.Publisher;
+import com.sharipov.individual.service.PersonService;
 import com.sharipov.individual.ui.beans.PersonBean;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
@@ -18,7 +20,14 @@ import javax.faces.convert.FacesConverter;
  */
 @FacesConverter("authorConverter")
 public class AuthorConverter implements Converter{
-    @Override
+
+    @Autowired
+    PersonService personService;
+
+
+
+
+    /*    @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         ValueExpression valueExpression = context.getApplication().getExpressionFactory()
                 .createValueExpression(context.getELContext(), "#{personBean}", PersonBean.class);
@@ -29,5 +38,19 @@ public class AuthorConverter implements Converter{
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         return ((Person) value).getId().toString();
+    }*/
+
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        return personService.find(Long.parseLong(value));
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value) {
+        if (value != null && value.getClass().equals(Person.class)) {
+            return ((Person) value).getId().toString();
+        } else {
+            return null;
+        }
     }
 }

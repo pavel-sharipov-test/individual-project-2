@@ -5,6 +5,9 @@ import com.sharipov.individual.dao.PublisherDAO;
 import com.sharipov.individual.model.Book;
 import com.sharipov.individual.model.Person;
 import com.sharipov.individual.model.Publisher;
+import com.sharipov.individual.service.BookService;
+import com.sharipov.individual.service.PersonService;
+import com.sharipov.individual.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -26,16 +29,18 @@ public class BookEditBean implements Serializable {
     private List<Person> personList;
 
     @Autowired
-    private PublisherDAO publisherDAO;
+    private PublisherService publisherService;
     @Autowired
-    private PersonDAO personDAO;
+    private PersonService  personService;
+    @Autowired
+    private BookService bookService;
 
 
     @PostConstruct
     public void init() {
         book = new Book();
-        publishersList = publisherDAO.findAll();
-        personList = personDAO.findAll();
+        publishersList = publisherService.findAllPublishers();
+        personList = personService.findAllPersons();
     }
 
     public String updateBook(Book book) {
@@ -44,7 +49,10 @@ public class BookEditBean implements Serializable {
         return "add_edit_book.xhtml";
     }
 
-
+    public String saveBook() {
+        bookService.createBook(book);
+        return null;
+    }
 
 
 

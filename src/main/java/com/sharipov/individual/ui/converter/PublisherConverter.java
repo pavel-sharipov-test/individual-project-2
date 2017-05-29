@@ -1,10 +1,10 @@
 package com.sharipov.individual.ui.converter;
 
 import com.sharipov.individual.model.Publisher;
-import com.sharipov.individual.ui.beans.BookBean;
-import com.sharipov.individual.ui.beans.PublisherBean;
+import com.sharipov.individual.service.PublisherService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -16,18 +16,25 @@ import javax.faces.convert.FacesConverter;
  * Date: 22.05.2017
  * Time: 15:28
  */
+
+@Component
 @FacesConverter("publisherConverter")
 public class PublisherConverter implements Converter {
+
+    @Autowired
+    PublisherService publisherService;
+
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        ValueExpression valueExpression = context.getApplication().getExpressionFactory()
-                .createValueExpression(context.getELContext(), "#{publisherBean}", PublisherBean.class);
-        PublisherBean publisher = (PublisherBean) valueExpression.getValue(context.getELContext());
-        return publisher.getPublisherbyId(Long.valueOf(value));
+        return publisherService.find(Long.parseLong(value));
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        return ((Publisher) value).getId().toString();
+        if (value != null && value.getClass().equals(Publisher.class)) {
+            return ((Publisher) value).getId().toString();
+        } else {
+            return null;
+        }
     }
 }
