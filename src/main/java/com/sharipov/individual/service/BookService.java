@@ -10,6 +10,7 @@ import java.util.List;
  * Date: 22.05.2017
  * Time: 13:31
  */
+
 public interface BookService {
     Book createBook(Book book);
 

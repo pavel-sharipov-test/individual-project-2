@@ -51,7 +51,7 @@ public class BookEditBean implements Serializable {
 
     public String saveBook() {
         bookService.createBook(book);
-        return null;
+        return "index.xhtml";
     }
 
 

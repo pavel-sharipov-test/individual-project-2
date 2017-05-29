@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Created by pavel on 29.05.2017.
  */
+
 public interface PublisherService {
     Publisher createPublisher(Publisher publisher);
 

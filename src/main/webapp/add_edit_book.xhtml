@@ -26,14 +26,14 @@
 
                     <p:outputLabel for="publishers" value="Publishers"/>
                     <p:selectOneMenu id="publishers" value="#{bookEditBean.book.publisher}" filter="true"
-                                        filterMatchMode="startsWith" converter="publisherConverter">
+                                        filterMatchMode="startsWith" converter="#{publisherConverter}">
                         <f:selectItems value="#{bookEditBean.publishersList}" var="publisher"
                                        itemValue="#{publisher}" itemLabel="#{publisher.name}"/>
                     </p:selectOneMenu>
 
                     <p:outputLabel for="persons" value="Persons"/>
                     <p:selectOneMenu id="persons" value="#{bookEditBean.book.author}" filter="true"
-                                        filterMatchMode="startsWith" converter="authorConverter">
+                                        filterMatchMode="startsWith" converter="#{authorConverter}">
                         <f:selectItems value="#{bookEditBean.personList}" var="person"
                                        itemValue="#{person}" itemLabel="#{person.name}"/>
                     </p:selectOneMenu>

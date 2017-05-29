@@ -12,11 +12,11 @@ import java.util.List;
  * Created by pavel on 29.05.2017.
  */
 
-@Service
+@Service(value = "publisherService")
 public class PublisherServiceImpl implements PublisherService {
 
     @Autowired
-    PublisherDAO publisherDAO;
+    private PublisherDAO publisherDAO;
 
     @Override
     public Publisher createPublisher(Publisher publisher) {

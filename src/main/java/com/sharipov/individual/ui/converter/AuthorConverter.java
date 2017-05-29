@@ -22,7 +22,7 @@ import javax.faces.convert.FacesConverter;
 public class AuthorConverter implements Converter{
 
     @Autowired
-    PersonService personService;
+    private PersonService personService;
 
 
 
@@ -42,7 +42,8 @@ public class AuthorConverter implements Converter{
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        return personService.find(Long.parseLong(value));
+       Person person = personService.find(Long.parseLong(value));
+        return person;
     }
 
     @Override
