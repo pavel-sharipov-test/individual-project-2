@@ -38,7 +38,11 @@
                                        itemValue="#{person}" itemLabel="#{person.name}"/>
                     </p:selectOneMenu>
 
+                <p:outputLabel for="bookType" value="BookTypes"/>
+                <p:selectOneMenu id="bookType" value="#{bookEditBean.book.bookType}">
 
+                    <f:selectItems value="#{enumBean.allBookTypes}"/>
+                </p:selectOneMenu>
 
 
 

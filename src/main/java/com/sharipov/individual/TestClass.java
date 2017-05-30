@@ -16,6 +16,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -33,7 +35,7 @@ public class TestClass {
 
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+ /*       ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         System.out.println(context.isActive());
         Stream.of(context.getBeanDefinitionNames()).forEach(System.out::println);
         TestClass testClass = new TestClass();
@@ -67,16 +69,18 @@ public class TestClass {
         publisher2.addBook(book2);
         person2.addBook(book1);
         person1.addBook(book2);
-/*        person1.setId(1L);
+*//*        person1.setId(1L);
         person2.setId(2L);
         publisher1.setId(1L);
-        publisher2.setId(2L);*/
+        publisher2.setId(2L);*//*
         personDAO.save(person1);
         personDAO.save(person2);
         publisherDAO.save(publisher1);
-        publisherDAO.save(publisher2);
+        publisherDAO.save(publisher2);*/
 
-
+        Stream.of(BookType.values())
+                .collect(Collectors.toMap(k -> k.name().toLowerCase(), v -> v))
+                .forEach((k, v) -> System.out.println(k + " " + v));
 
 
 
