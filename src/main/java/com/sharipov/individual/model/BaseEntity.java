@@ -1,5 +1,6 @@
 package com.sharipov.individual.model;
 
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,8 @@ public class BaseEntity {
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
 
+    public BaseEntity() {
+    }
 
     public Long getId() {
         return id;
@@ -26,16 +29,20 @@ public class BaseEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || !getClass().equals(Hibernate.getClass(o))) {
+            return false;
+        }
 
         BaseEntity that = (BaseEntity) o;
 
-        return !(id == null || !id.equals(that.id));
+        return getId() != null && getId().equals(that.getId());
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return (getId() == null) ? 0 : getId().hashCode();
     }
 }
