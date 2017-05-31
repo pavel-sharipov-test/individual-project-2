@@ -50,9 +50,9 @@
 
 
             <p:commandButton value="Save" id="saveButton" icon="ui-icon-check" update="bookForm"
-                             ajax="true" action="#{bookEditBean.saveBook}"/>
+                             ajax="true" actionListener="#{bookEditBean.saveBook}" action="Index"/>
             <p:commandButton id="cancelButton" value="Cancel" immediate="true"
-                             actionListener="#{bookBean.init}" action="index"/>
+                             actionListener="#{bookBean.init}" action="Index"/>
 
         </h:form>
     </f:view>

@@ -1,7 +1,9 @@
 package com.sharipov.individual.model;
 
-import javax.persistence.*;
-import java.util.ArrayList;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
@@ -12,7 +14,6 @@ public class Publisher extends BaseEntity {
 
     private String name;
 
-    //@CollectionTable(name = "Book", joinColumns = @JoinColumn(name = "id"))
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "publisher")
     private List<Book> books;
 
@@ -24,7 +25,6 @@ public class Publisher extends BaseEntity {
         this.name = name;
     }
 
-
     public List<Book> getBooks() {
         return books;
     }
@@ -33,13 +33,5 @@ public class Publisher extends BaseEntity {
         this.books = books;
     }
 
-    //For test reasons only
-    public void addBook(Book book) {
-        if (books == null) {
-            books = new ArrayList<>();
-        }
-        books.add(book);
-        book.setPublisher(this);
-    }
 
 }

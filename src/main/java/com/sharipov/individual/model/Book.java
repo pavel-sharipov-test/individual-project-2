@@ -11,18 +11,18 @@ public class Book extends BaseEntity {
 
     private String name;
 
-    //@Column(name = "authorid")
+
     @JoinColumn(name = "authorid")
-    @ManyToOne//(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     private Person author;
 
-    //@Column(name = "publisherid")
+
     @JoinColumn(name = "publisherid")
-    @ManyToOne//(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne
     private Publisher publisher;
 
     @Enumerated(EnumType.STRING)
-    BookType bookType;
+    private BookType bookType;
 
     private int year;
 

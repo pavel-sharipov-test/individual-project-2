@@ -1,7 +1,5 @@
 package com.sharipov.individual.ui.beans;
 
-import com.sharipov.individual.dao.PersonDAO;
-import com.sharipov.individual.dao.PublisherDAO;
 import com.sharipov.individual.model.Book;
 import com.sharipov.individual.model.Person;
 import com.sharipov.individual.model.Publisher;
@@ -11,28 +9,28 @@ import com.sharipov.individual.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by pavel on 28.05.2017.
  */
-@Named
-@SessionScoped
+@ManagedBean
+@ViewScoped
 public class BookEditBean implements Serializable {
 
     private Book book;
     private List<Publisher> publishersList;
     private List<Person> personList;
 
-    @Autowired
+    @ManagedProperty(value = "#{publisherService}")
     private PublisherService publisherService;
-    @Autowired
-    private PersonService  personService;
-    @Autowired
+    @ManagedProperty(value = "#{personService}")
+    private PersonService personService;
+    @ManagedProperty(value = "#{bookService}")
     private BookService bookService;
 
 
@@ -43,17 +41,15 @@ public class BookEditBean implements Serializable {
         personList = personService.findAllPersons();
     }
 
-    public String updateBook(Book book) {
+    public void updateBook(Book book) {
         setBook(book);
         init();
-        return "add_edit_book.xhtml";
     }
 
-    public String saveBook() {
+    public void saveBook() {
         bookService.createBook(book);
-        return "index.xhtml";
-    }
 
+    }
 
 
     public List<Person> getPersonList() {
@@ -80,5 +76,17 @@ public class BookEditBean implements Serializable {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public void setPublisherService(PublisherService publisherService) {
+        this.publisherService = publisherService;
+    }
+
+    public void setPersonService(PersonService personService) {
+        this.personService = personService;
+    }
+
+    public void setBookService(BookService bookService) {
+        this.bookService = bookService;
     }
 }

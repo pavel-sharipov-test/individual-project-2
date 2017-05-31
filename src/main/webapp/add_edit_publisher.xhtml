@@ -33,9 +33,9 @@
                 </p:column>
             </p:panelGrid>
             <p:commandButton value="Save" id="saveButton" icon="ui-icon-check" update="publisherForm"
-                             ajax="true" action="#{publisherEditBean.savePublisher}"/>
+                             ajax="true" actionListener="#{publisherEditBean.savePublisher}" action="Index"/>
             <p:commandButton id="cancelButton" value="Cancel" immediate="true"
-                             actionListener="#{bookBean.init}" action="index"/>
+                             actionListener="#{bookBean.init}" action="Index"/>
 
         </h:form>
     </f:view>

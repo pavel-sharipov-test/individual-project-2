@@ -41,16 +41,16 @@
                 <p:column>
                     <p:commandButton icon="ui-icon-trash" value="Delete" title="Delete" actionListener="#{bookBean.deleteBook(book)}"
                                      update="bookForm"/>
-                    <p:commandButton value="Edit" title="Edit" update="bookForm" actionListener="#{bookEditBean.updateBook(book)}"/>
+                    <p:commandButton value="Edit" title="Edit" update="bookForm" actionListener="#{bookEditBean.updateBook(book)}" action="AddBook"/>
 
                 </p:column>
 
             </p:dataTable>
 
             <div style="margin-top: 1%">
-                <p:commandButton value="Add Book"  action="add_edit_book.xhtml"/>
-                <p:commandButton value="Add Author" actionListener="#{personEditBean.init}" action="add_edit_author.xhtml"/>
-                <p:commandButton value="Add Publisher" actionListener="#{publisherEditBean.init}" action="add_edit_publisher.xhtml"/>
+                <p:commandButton value="Add Book"  action="AddBook"/>
+                <p:commandButton value="Add Author" actionListener="#{personEditBean.init}" action="AddAuthor"/>
+                <p:commandButton value="Add Publisher" actionListener="#{publisherEditBean.init}" action="AddPublisher"/>
 
             </div>
 

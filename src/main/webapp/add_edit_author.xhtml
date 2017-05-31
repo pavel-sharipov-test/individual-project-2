@@ -12,7 +12,7 @@
     <f:view>
         <h:form id="personForm">
             <h2>Authors</h2>
-            <p:dataTable id="personTable" var="person" value="#{personEditBean.persons}">
+            <p:dataTable id="personTable" var="person" value="#{personEditBean.persons}" style="width: 30%">
                 <p:column headerText="Id">
                     <h:outputText value="#{person.id}"/>
                 </p:column>
@@ -25,15 +25,15 @@
         <h:form id="addPersonForm">
             <h2>Add author</h2>
             <p:panelGrid columns="2">
-                <p:column>
+                <p:column width="100">
                     <p:outputLabel for="name" value="Name"/>
                     <p:inputText id="name" value="#{personEditBean.person.name}"/>
                 </p:column>
             </p:panelGrid>
             <p:commandButton value="Save" id="saveButton" icon="ui-icon-check" update="personForm"
-                             ajax="true" action="#{personEditBean.savePerson}"/>
+                             ajax="true" actionListener="#{personEditBean.savePerson}" action="Index"/>
             <p:commandButton id="cancelButton" value="Cancel" immediate="true"
-                             actionListener="#{bookBean.init}" action="index"/>
+                             actionListener="#{bookBean.init}" action="Index"/>
 
         </h:form>
     </f:view>

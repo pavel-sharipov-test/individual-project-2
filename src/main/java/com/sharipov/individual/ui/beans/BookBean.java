@@ -1,22 +1,20 @@
 package com.sharipov.individual.ui.beans;
 
 
-import com.sharipov.individual.dao.BookDAO;
 import com.sharipov.individual.model.Book;
 import com.sharipov.individual.service.BookService;
-import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA
@@ -25,11 +23,11 @@ import java.util.Map;
  * Time: 14:25
  */
 
-@Named("bookBean")
-@SessionScoped
+@ManagedBean
+@ViewScoped
 public class BookBean implements Serializable {
 
-    @Autowired
+    @ManagedProperty(value = "#{bookService}")
     private BookService bookService;
 
     private Book book = new Book();
@@ -37,6 +35,7 @@ public class BookBean implements Serializable {
 
     @PostConstruct
     public void init() {
+        book = new Book();
         books = bookService.findAllBooks();
     }
 
@@ -65,5 +64,7 @@ public class BookBean implements Serializable {
         init();
     }
 
-
+    public void setBookService(BookService bookService) {
+        this.bookService = bookService;
+    }
 }

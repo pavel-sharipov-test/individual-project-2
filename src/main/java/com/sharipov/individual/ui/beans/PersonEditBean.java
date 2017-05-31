@@ -5,9 +5,9 @@ import com.sharipov.individual.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,12 +17,12 @@ import java.util.List;
 *
 */
 
-@Named
-@SessionScoped
+@ManagedBean
+@ViewScoped
 public class PersonEditBean implements Serializable {
 
-    @Autowired
-    PersonService personService;
+    @ManagedProperty(value = "#{personService}")
+    private PersonService personService;
 
     private List<Person> persons;
 
@@ -50,8 +50,12 @@ public class PersonEditBean implements Serializable {
         this.person = person;
     }
 
-    public String savePerson() {
+    public void savePerson() {
         personService.createPerson(person);
-        return "index";
+
+    }
+
+    public void setPersonService(PersonService personService) {
+        this.personService = personService;
     }
 }

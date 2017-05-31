@@ -12,11 +12,12 @@ import java.util.List;
  * Created by pavel on 29.05.2017.
  */
 
-@Service
+@Service(value = "personService")
 public class PersonServiceImpl implements PersonService {
 
     @Autowired
     private PersonDAO personDAO;
+
     @Override
     public Person createPerson(Person person) {
         personDAO.save(person);

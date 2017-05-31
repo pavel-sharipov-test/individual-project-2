@@ -15,11 +15,11 @@ import java.util.List;
  * Time: 13:26
  */
 
-@Service
+@Service(value = "bookService")
 public class BookServiceImpl implements BookService {
 
     @Autowired
-    BookDAO bookDAO;
+    private BookDAO bookDAO;
 
     @Override
     public Book createBook(Book book) {
