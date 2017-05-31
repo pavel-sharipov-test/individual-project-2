@@ -2,6 +2,8 @@ package com.sharipov.individual.dao.Impl;
 
 import com.sharipov.individual.dao.BaseEntityDAO;
 import com.sharipov.individual.model.BaseEntity;
+import com.sharipov.individual.service.Impl.BookServiceImpl;
+import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -30,6 +32,8 @@ public abstract class BaseEntityDAOImpl<T extends BaseEntity> implements BaseEnt
         this.type = type;
     }
 
+    private static final Logger LOGGER = Logger.getLogger(BookDAOImpl.class);
+
     @Override
     public void save(T object) {
         if (object.getId() == null) {
@@ -57,7 +61,16 @@ public abstract class BaseEntityDAOImpl<T extends BaseEntity> implements BaseEnt
 
     @Override
     public void delete(T object) {
+
+        LOGGER.info("From DAO");
         T result = entityManager.merge(object);
+        if (entityManager.contains(result)) {
+            LOGGER.info("The entity is attached to current Persistence Context");
+        }
+        else {
+            LOGGER.error("Entity is not attached!");
+        }
+        LOGGER.info(result.toString());
         entityManager.remove(result);
     }
 }
